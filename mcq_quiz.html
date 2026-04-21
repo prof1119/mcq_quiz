@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الفسيولوجيا | Physiology MCQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-cyan: #00f5ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff88;
+    --neon-yellow: #ffff00;
+    --neon-orange: #ff6600;
+    --bg-dark: #030310;
+    --bg-card: #080820;
+    --bg-card2: #0a0a25;
+    --border-dim: rgba(0,245,255,0.15);
+    --text-main: #e0e8ff;
+    --text-dim: #7080a0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-dark);
+    font-family: 'Tajawal', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatOrb 20s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--neon-cyan); top: -100px; left: -100px; animation-delay: 0s; }
+  .orb2 { width: 400px; height: 400px; background: var(--neon-pink); bottom: -100px; right: -100px; animation-delay: -7s; }
+  .orb3 { width: 300px; height: 300px; background: var(--neon-green); top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: -14s; }
+
+  @keyframes floatOrb {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 30px); }
+  }
+
+  /* Header */
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 60px 20px 40px;
+  }
+
+  .header-badge {
+    display: inline-block;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0,245,255,0.3);
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink), var(--neon-cyan));
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  /* Section tabs */
+  .tabs {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px 40px;
+  }
+
+  .tab-btn {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tab-btn:hover::before, .tab-btn.active::before { opacity: 0.15; }
+
+  .tab-cyan { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+  .tab-cyan::before { background: var(--neon-cyan); }
+  .tab-cyan.active { box-shadow: 0 0 20px rgba(0,245,255,0.4), inset 0 0 20px rgba(0,245,255,0.1); }
+
+  .tab-pink { border-color: var(--neon-pink); color: var(--neon-pink); }
+  .tab-pink::before { background: var(--neon-pink); }
+  .tab-pink.active { box-shadow: 0 0 20px rgba(255,0,255,0.4), inset 0 0 20px rgba(255,0,255,0.1); }
+
+  .tab-green { border-color: var(--neon-green); color: var(--neon-green); }
+  .tab-green::before { background: var(--neon-green); }
+  .tab-green.active { box-shadow: 0 0 20px rgba(0,255,136,0.4), inset 0 0 20px rgba(0,255,136,0.1); }
+
+  .tab-yellow { border-color: var(--neon-yellow); color: var(--neon-yellow); }
+  .tab-yellow::before { background: var(--neon-yellow); }
+  .tab-yellow.active { box-shadow: 0 0 20px rgba(255,255,0,0.4), inset 0 0 20px rgba(255,255,0,0.1); }
+
+  .tab-orange { border-color: var(--neon-orange); color: var(--neon-orange); }
+  .tab-orange::before { background: var(--neon-orange); }
+  .tab-orange.active { box-shadow: 0 0 20px rgba(255,102,0,0.4), inset 0 0 20px rgba(255,102,0,0.1); }
+
+  /* Sections */
+  .section {
+    display: none;
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px currentColor; }
+    50% { opacity: 0.5; box-shadow: none; }
+  }
+
+  .s-cyan { color: var(--neon-cyan); border-color: rgba(0,245,255,0.2); }
+  .s-cyan .dot { background: var(--neon-cyan); color: var(--neon-cyan); }
+  .s-pink { color: var(--neon-pink); border-color: rgba(255,0,255,0.2); }
+  .s-pink .dot { background: var(--neon-pink); color: var(--neon-pink); }
+  .s-green { color: var(--neon-green); border-color: rgba(0,255,136,0.2); }
+  .s-green .dot { background: var(--neon-green); color: var(--neon-green); }
+  .s-yellow { color: var(--neon-yellow); border-color: rgba(255,255,0,0.2); }
+  .s-yellow .dot { background: var(--neon-yellow); color: var(--neon-yellow); }
+  .s-orange { color: var(--neon-orange); border-color: rgba(255,102,0,0.2); }
+  .s-orange .dot { background: var(--neon-orange); color: var(--neon-orange); }
+
+  /* Question card */
+  .q-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .q-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .q-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .border-cyan::before { background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent); }
+  .border-pink::before { background: linear-gradient(90deg, transparent, var(--neon-pink), transparent); }
+  .border-green::before { background: linear-gradient(90deg, transparent, var(--neon-green), transparent); }
+  .border-yellow::before { background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent); }
+  .border-orange::before { background: linear-gradient(90deg, transparent, var(--neon-orange), transparent); }
+
+  .q-number {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .q-text-en {
+    font-size: 17px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .q-text-ar {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    padding-right: 0;
+    border-right: none;
+  }
+
+  /* Options */
+  .options {
+    display: grid;
+    gap: 10px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .option:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  /* CORRECT answer styling */
+  .option.correct {
+    border-color: var(--neon-green) !important;
+    background: rgba(0,255,136,0.08) !important;
+    position: relative;
+  }
+
+  .option.correct::after {
+    content: '✓ صح';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--neon-green);
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--neon-green);
+  }
+
+  .option.correct .opt-letter {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    background: rgba(0,255,136,0.15);
+    box-shadow: 0 0 12px rgba(0,255,136,0.4);
+  }
+
+  .option.correct .opt-text-en {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,255,136,0.3);
+  }
+
+  .opt-letter {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .opt-content { flex: 1; }
+
+  .opt-text-en {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.4;
+  }
+
+  .opt-text-ar {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dim);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .stat-chip {
+    background: var(--bg-card2);
+    border: 1px solid var(--border-dim);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stat-chip span:first-child {
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.3); border-radius: 3px; }
+
+  /* Sub-tabs (MCQ / True-False) */
+  .sub-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .sub-tab {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .sub-tab.active {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; animation: fadeIn 0.35s ease; }
+
+  /* True/False card */
+  .tf-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .tf-card:hover { transform: translateY(-2px); }
+  .tf-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .tf-card.border-cyan::before  { background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent); }
+  .tf-card.border-pink::before  { background: linear-gradient(90deg, transparent, var(--neon-pink), transparent); }
+  .tf-card.border-green::before { background: linear-gradient(90deg, transparent, var(--neon-green), transparent); }
+  .tf-card.border-yellow::before{ background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent); }
+  .tf-card.border-orange::before{ background: linear-gradient(90deg, transparent, var(--neon-orange), transparent); }
+
+  .tf-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    min-width: 28px;
+    color: rgba(255,255,255,0.3);
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .tf-body { flex: 1; }
+  .tf-text-en {
+    font-size: 15px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+  .tf-text-ar {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .tf-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+  }
+  .tf-true {
+    background: rgba(0,255,136,0.12);
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+    text-shadow: 0 0 8px var(--neon-green);
+  }
+  .tf-false {
+    background: rgba(255,0,102,0.12);
+    border: 1px solid #ff0066;
+    color: #ff4488;
+    text-shadow: 0 0 8px #ff0066;
+  }
+  .tf-section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Random Quiz Button */
+  .quiz-btn-wrap {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .quiz-start-btn {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 13px 32px;
+    border-radius: 12px;
+    border: 2px solid currentColor;
+    background: transparent;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-start-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: currentColor;
+  }
+  .quiz-start-btn:hover::before { opacity: 0.12; }
+  .quiz-start-btn span { position: relative; z-index: 1; }
+
+  /* Quiz Modal Overlay */
+  .quiz-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(3,3,16,0.95);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px 20px 80px;
+    animation: fadeIn 0.3s ease;
+  }
+  .quiz-overlay.open { display: block; }
+  .quiz-modal {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .quiz-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .quiz-close {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .quiz-close:hover { border-color: #ff4488; color: #ff4488; }
+  .quiz-progress-bar {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .quiz-counter {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .quiz-q-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+  .quiz-q-en {
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .quiz-q-ar {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .quiz-options { display: grid; gap: 10px; }
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-option:hover:not(.answered) { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
+  .quiz-option.selected-correct { border-color: var(--neon-green) !important; background: rgba(0,255,136,0.08) !important; }
+  .quiz-option.selected-wrong { border-color: #ff0066 !important; background: rgba(255,0,102,0.08) !important; }
+  .quiz-option.show-correct { border-color: var(--neon-green) !important; background: rgba(0,255,136,0.05) !important; }
+  .quiz-opt-letter {
+    min-width: 32px; height: 32px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700;
+    color: rgba(255,255,255,0.4); flex-shrink: 0; transition: all 0.2s;
+  }
+  .quiz-option.selected-correct .quiz-opt-letter { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0,255,136,0.15); box-shadow: 0 0 12px rgba(0,255,136,0.4); }
+  .quiz-option.selected-wrong .quiz-opt-letter { border-color: #ff0066; color: #ff4488; background: rgba(255,0,102,0.15); }
+  .quiz-option.show-correct .quiz-opt-letter { border-color: var(--neon-green); color: var(--neon-green); }
+  .quiz-opt-en { font-size: 14px; font-weight: 800; color: var(--text-main); line-height: 1.4; }
+  .quiz-opt-ar { font-size: 12px; font-weight: 700; color: var(--text-dim); margin-top: 2px; }
+  .quiz-feedback {
+    display: none; margin-top: 14px; padding: 12px 18px;
+    border-radius: 10px; font-weight: 900; font-size: 14px;
+  }
+  .quiz-feedback.correct-fb { display: block; background: rgba(0,255,136,0.1); border: 1px solid var(--neon-green); color: var(--neon-green); }
+  .quiz-feedback.wrong-fb { display: block; background: rgba(255,0,102,0.1); border: 1px solid #ff0066; color: #ff4488; }
+  .quiz-nav { display: flex; justify-content: center; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+  .quiz-nav-btn {
+    font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700;
+    letter-spacing: 1.5px; padding: 12px 28px; border-radius: 10px; border: 1px solid;
+    cursor: pointer; text-transform: uppercase; transition: all 0.25s;
+    background: transparent; display: none;
+  }
+  .quiz-nav-btn.visible { display: block; }
+  .quiz-score-screen { display: none; text-align: center; padding: 60px 20px; }
+  .quiz-score-screen.visible { display: block; animation: fadeIn 0.4s ease; }
+  .score-circle {
+    width: 140px; height: 140px; border-radius: 50%; border: 3px solid;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin: 0 auto 30px;
+  }
+  .score-num { font-family: 'Orbitron', monospace; font-size: 36px; font-weight: 900; line-height: 1; }
+  .score-denom { font-family: 'Orbitron', monospace; font-size: 13px; opacity: 0.5; margin-top: 4px; }
+  .score-msg { font-size: 22px; font-weight: 900; margin-bottom: 10px; }
+  .score-sub { font-size: 15px; color: var(--text-dim); margin-bottom: 36px; }
+  .quiz-retry-btn {
+    font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    padding: 12px 30px; border-radius: 10px; border: 1px solid;
+    cursor: pointer; text-transform: uppercase; transition: all 0.25s;
+    background: transparent; margin: 0 8px;
+  }
+
+  /* True/False buttons inside quiz */
+  .quiz-tf-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .quiz-tf-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 22px 16px;
+    border-radius: 14px;
+    border: 2px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.5);
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .quiz-tf-btn:not([disabled]):hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.3);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .quiz-tf-btn.quiz-tf-true:not([disabled]):hover {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    background: rgba(0,255,136,0.07);
+  }
+  .quiz-tf-btn.quiz-tf-false:not([disabled]):hover {
+    border-color: #ff0066;
+    color: #ff4488;
+    background: rgba(255,0,102,0.07);
+  }
+  .quiz-tf-btn.tf-selected-correct {
+    border-color: var(--neon-green) !important;
+    background: rgba(0,255,136,0.12) !important;
+    color: var(--neon-green) !important;
+    box-shadow: 0 0 20px rgba(0,255,136,0.2);
+  }
+  .quiz-tf-btn.tf-selected-wrong {
+    border-color: #ff0066 !important;
+    background: rgba(255,0,102,0.12) !important;
+    color: #ff4488 !important;
+  }
+  .quiz-tf-btn.tf-show-correct {
+    border-color: var(--neon-green) !important;
+    color: var(--neon-green) !important;
+    background: rgba(0,255,136,0.06) !important;
+  }
+  .quiz-tf-btn[disabled] { cursor: default; }
+
+  /* Keyword highlight */
+  .kw {
+    background: rgba(255, 220, 0, 0.18);
+    color: #ffe066;
+    border-bottom: 2px solid #ffe066;
+    border-radius: 3px;
+    padding: 0 3px;
+    font-weight: 900;
+    font-style: normal;
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<header>
+  <div class="header-badge">PHYSIOLOGY · MEDICAL SCIENCES</div>
+  <h1>MCQ QUIZ BANK</h1>
+  <p class="subtitle">بنك أسئلة الاختيار من متعدد — الفسيولوجيا الطبية</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-chip"><span style="color:var(--neon-cyan)">48</span><span>سؤال MCQ</span></div>
+  <div class="stat-chip"><span style="color:var(--neon-pink)">46</span><span>سؤال صح/خطأ</span></div>
+  <div class="stat-chip"><span style="color:var(--neon-green)">✓</span><span>الإجابة الصحيحة محددة</span></div>
+  <div class="stat-chip"><span style="color:var(--neon-yellow)">5</span><span>أقسام</span></div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn tab-cyan active" onclick="showSection('physiology')">🧬 الفسيولوجيا</button>
+  <button class="tab-btn tab-pink" onclick="showSection('blood')">🩸 الدم</button>
+  <button class="tab-btn tab-green" onclick="showSection('muscles')">💪 العضلات</button>
+  <button class="tab-btn tab-yellow" onclick="showSection('respiratory')">🫁 الجهاز التنفسي</button>
+  <button class="tab-btn tab-orange" onclick="showSection('thermo')">🌡️ التنظيم الحراري</button>
+</div>
+
+<!-- ==================== PHYSIOLOGY ==================== -->
+<div id="physiology" class="section active">
+  <div class="section-title s-cyan"><div class="dot"></div> PHYSIOLOGY — الفسيولوجيا</div>
+  <div class="quiz-btn-wrap">
+    <button class="quiz-start-btn" style="color:var(--neon-cyan)" onclick="startQuiz('physiology')">
+      <span>🎲 كويز عشوائي — Random Quiz</span>
+    </button>
+  </div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('physiology','mcq',this)">📝 MCQ — اختيار متعدد</button>
+    <button class="sub-tab" onclick="showSub('physiology','tf',this)">✅ صح / خطأ — True &amp; False</button>
+  </div>
+  <div id="physiology-mcq" class="sub-panel active">
+
+  <!-- Q1 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 01</span>
+    <div class="q-text-en">Physiology is mainly concerned with:</div>
+    <div class="q-text-ar">الفسيولوجيا تُعنى بشكل رئيسي بـ:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">The study of body structure</div><div class="opt-text-ar">دراسة بنية الجسم</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">The study of body function</div><div class="opt-text-ar">دراسة وظائف الجسم</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">The study of body diseases</div><div class="opt-text-ar">دراسة أمراض الجسم</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">The study of body chemistry</div><div class="opt-text-ar">دراسة كيمياء الجسم</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 02</span>
+    <div class="q-text-en">Human physiology focuses on:</div>
+    <div class="q-text-ar">تركّز فسيولوجيا الإنسان على:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Animal behavior</div><div class="opt-text-ar">سلوك الحيوانات</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Function of organs and systems and their integration</div><div class="opt-text-ar">وظائف الأعضاء والأجهزة وتكاملها</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Chemical composition of cells only</div><div class="opt-text-ar">التركيب الكيميائي للخلايا فقط</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Study of plants</div><div class="opt-text-ar">دراسة النباتات</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 03</span>
+    <div class="q-text-en">Approximately how many cells make up the human body?</div>
+    <div class="q-text-ar">ما التقدير التقريبي لعدد خلايا جسم الإنسان؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">1–5 million</div><div class="opt-text-ar">1–5 مليون</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">1–5 billion</div><div class="opt-text-ar">1–5 مليار</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">75–100 trillion</div><div class="opt-text-ar">75–100 تريليون</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">5–1 trillion</div><div class="opt-text-ar">5–1 تريليون</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 04</span>
+    <div class="q-text-en">A group of similar cells with similar properties forms:</div>
+    <div class="q-text-ar">مجموعة من الخلايا المتشابهة ذات الخصائص المماثلة تُكوّن:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Organs</div><div class="opt-text-ar">أعضاء</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Organelles</div><div class="opt-text-ar">عضيّات</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Tissues</div><div class="opt-text-ar">أنسجة</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Systems</div><div class="opt-text-ar">أجهزة</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 05</span>
+    <div class="q-text-en">Homeostasis refers to:</div>
+    <div class="q-text-ar">التوازن الداخلي (Homeostasis) يعني:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">The destruction of body cells</div><div class="opt-text-ar">تدمير خلايا الجسم</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Maintenance of constant internal conditions</div><div class="opt-text-ar">الحفاظ على ثبات الظروف الداخلية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Rapid change in external environment</div><div class="opt-text-ar">التغير السريع في البيئة الخارجية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Growth of tissues</div><div class="opt-text-ar">نمو الأنسجة</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 06</span>
+    <div class="q-text-en">Which organ system mainly regulates metabolic functions through hormones?</div>
+    <div class="q-text-ar">أي جهاز من أجهزة الجسم ينظّم الوظائف الأيضية بشكل رئيسي عن طريق الهرمونات؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Circulatory system</div><div class="opt-text-ar">الجهاز الدوري</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Endocrine system</div><div class="opt-text-ar">الجهاز الصماوي (الغدد الصماء)</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Muscular system</div><div class="opt-text-ar">الجهاز العضلي</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Digestive system</div><div class="opt-text-ar">الجهاز الهضمي</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 07</span>
+    <div class="q-text-en">Which hormone increases the rate of most chemical reactions in all cells?</div>
+    <div class="q-text-ar">أي هرمون يزيد معدل معظم التفاعلات الكيميائية في جميع الخلايا؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Insulin</div><div class="opt-text-ar">الأنسولين</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Thyroid hormone</div><div class="opt-text-ar">هرمون الغدة الدرقية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Adrenocortical hormone</div><div class="opt-text-ar">هرمون قشرة الكظر</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Parathyroid hormone</div><div class="opt-text-ar">هرمون الغدة جار الدرقية</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 08</span>
+    <div class="q-text-en">The autonomic nervous system controls:</div>
+    <div class="q-text-ar">الجهاز العصبي اللاإرادي يتحكم في:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Voluntary muscle movements</div><div class="opt-text-ar">حركات العضلات الإرادية</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Internal organs at the subconscious level</div><div class="opt-text-ar">الأعضاء الداخلية على المستوى اللاواعي</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Bone and cartilage growth</div><div class="opt-text-ar">نمو العظام والغضاريف</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Vision and hearing only</div><div class="opt-text-ar">الرؤية والسمع فقط</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 09</span>
+    <div class="q-text-en">The main components of protoplasm are:</div>
+    <div class="q-text-ar">المكونات الرئيسية للبروتوبلازم هي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Water, lipids, and DNA only</div><div class="opt-text-ar">الماء والدهون والـDNA فقط</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Water, electrolytes, proteins, lipids, and carbohydrates</div><div class="opt-text-ar">الماء والإلكتروليتات والبروتينات والدهون والكربوهيدرات</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Minerals, fats, and hormones</div><div class="opt-text-ar">المعادن والدهون والهرمونات</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Enzymes, vitamins, and minerals</div><div class="opt-text-ar">الإنزيمات والفيتامينات والمعادن</div></div></div>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="q-card border-cyan">
+    <span class="q-number">QUESTION 10</span>
+    <div class="q-text-en">Which organelle produces more than 95% of cellular energy?</div>
+    <div class="q-text-ar">أي عضية تنتج أكثر من 95% من طاقة الخلية؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Ribosome</div><div class="opt-text-ar">الريبوسوم</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Mitochondrion</div><div class="opt-text-ar">الميتوكوندريا</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Lysosome</div><div class="opt-text-ar">الليسوسوم</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Nucleus</div><div class="opt-text-ar">النواة</div></div></div>
+    </div>
+  </div>
+  </div><!-- end physiology-mcq sub-panel -->
+
+  <!-- Physiology True/False -->
+  <div id="physiology-tf" class="sub-panel">
+    <div class="tf-section-title">TRUE / FALSE — صح أم خطأ</div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">01</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Physiology describes how the body systems work together.</div>
+        <div class="tf-text-ar">الفسيولوجيا تصف كيفية عمل أجهزة الجسم معًا.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">02</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Human physiology deals only with the study of human anatomy.</div>
+        <div class="tf-text-ar">تختص فسيولوجيا الإنسان بدراسة تشريح الإنسان فقط.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">03</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Tissues are formed by the combination of different organs.</div>
+        <div class="tf-text-ar">تتكون الأنسجة من تجمّع أعضاء مختلفة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">04</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Homeostasis keeps internal conditions nearly constant.</div>
+        <div class="tf-text-ar">التوازن الداخلي يُبقي الظروف الداخلية ثابتة تقريبًا.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">05</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The kidneys help maintain constant ion concentration in the body.</div>
+        <div class="tf-text-ar">تساعد الكلى على الحفاظ على تركيز ثابت للأيونات في الجسم.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">06</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Hormones are secreted directly into the digestive tract.</div>
+        <div class="tf-text-ar">تُفرز الهرمونات مباشرةً في الجهاز الهضمي.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">07</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The nervous system operates only at a conscious level.</div>
+        <div class="tf-text-ar">يعمل الجهاز العصبي على المستوى الواعي فقط.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">08</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The autonomic nervous system controls heart activity and gland secretion.</div>
+        <div class="tf-text-ar">يتحكم الجهاز العصبي اللاإرادي في نشاط القلب وإفرازات الغدد.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">09</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The cytoplasm is separated from the surrounding fluid by the cell membrane.</div>
+        <div class="tf-text-ar">يُفصل السيتوبلازم عن السائل المحيط بواسطة غشاء الخلية.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-cyan">
+      <div class="tf-num">10</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Without mitochondria, the cell can still produce enough energy for survival.</div>
+        <div class="tf-text-ar">بدون الميتوكوندريا تستطيع الخلية إنتاج طاقة كافية للبقاء.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ</span>
+      </div>
+    </div>
+  </div><!-- end physiology-tf -->
+</div><!-- end physiology section -->
+
+<!-- ==================== BLOOD ==================== -->
+<div id="blood" class="section">
+  <div class="section-title s-pink"><div class="dot"></div> BLOOD — الدم</div>
+  <div class="quiz-btn-wrap">
+    <button class="quiz-start-btn" style="color:var(--neon-pink)" onclick="startQuiz('blood')">
+      <span>🎲 كويز عشوائي — Random Quiz</span>
+    </button>
+  </div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('blood','mcq',this)">📝 MCQ — اختيار متعدد</button>
+    <button class="sub-tab" onclick="showSub('blood','tf',this)">✅ صح / خطأ — True &amp; False</button>
+  </div>
+  <div id="blood-mcq" class="sub-panel active">
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 01</span>
+    <div class="q-text-en">Which of the following is NOT a component of blood?</div>
+    <div class="q-text-ar">أيٌّ مما يلي ليس من مكونات الدم؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Red blood cells</div><div class="opt-text-ar">خلايا الدم الحمراء</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Plasma</div><div class="opt-text-ar">البلازما</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Platelets</div><div class="opt-text-ar">الصفائح الدموية</div></div></div>
+      <div class="option correct"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Cartilage</div><div class="opt-text-ar">الغضروف</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 02</span>
+    <div class="q-text-en">What percentage of blood is plasma?</div>
+    <div class="q-text-ar">ما نسبة البلازما في الدم؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">25%</div><div class="opt-text-ar">25%</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">45%</div><div class="opt-text-ar">45%</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">55%</div><div class="opt-text-ar">55%</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">75%</div><div class="opt-text-ar">75%</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 03</span>
+    <div class="q-text-en">Which blood protein is responsible for blood clotting?</div>
+    <div class="q-text-ar">أي بروتين دموي مسؤول عن تخثر الدم؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Albumin</div><div class="opt-text-ar">الألبومين</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Globulin</div><div class="opt-text-ar">الغلوبولين</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Fibrinogen</div><div class="opt-text-ar">الفيبرينوجين</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Myoglobin</div><div class="opt-text-ar">الميوغلوبين</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 04</span>
+    <div class="q-text-en">The absence of which protein in serum differentiates it from plasma?</div>
+    <div class="q-text-ar">غياب أي بروتين في المصل يميّزه عن البلازما؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Albumin</div><div class="opt-text-ar">الألبومين</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Globulin</div><div class="opt-text-ar">الغلوبولين</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Fibrinogen</div><div class="opt-text-ar">الفيبرينوجين</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Hemoglobin</div><div class="opt-text-ar">الهيموغلوبين</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 05</span>
+    <div class="q-text-en">Red blood cells are mainly responsible for:</div>
+    <div class="q-text-ar">خلايا الدم الحمراء مسؤولة بشكل رئيسي عن:</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Transporting oxygen and carbon dioxide</div><div class="opt-text-ar">نقل الأكسجين وثاني أكسيد الكربون</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Producing antibodies</div><div class="opt-text-ar">إنتاج الأجسام المضادة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Blood clotting</div><div class="opt-text-ar">تخثر الدم</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Producing hormones</div><div class="opt-text-ar">إنتاج الهرمونات</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 06</span>
+    <div class="q-text-en">The lifespan of a red blood cell is approximately:</div>
+    <div class="q-text-ar">عمر خلية الدم الحمراء تقريبًا:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">60 days</div><div class="opt-text-ar">60 يومًا</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">90 days</div><div class="opt-text-ar">90 يومًا</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">120 days</div><div class="opt-text-ar">120 يومًا</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">150 days</div><div class="opt-text-ar">150 يومًا</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 07</span>
+    <div class="q-text-en">Which of the following statements about hemoglobin is correct?</div>
+    <div class="q-text-ar">أيٌّ من العبارات التالية صحيحة بشأن الهيموغلوبين؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">It is found only in WBCs</div><div class="opt-text-ar">يوجد فقط في خلايا الدم البيضاء</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">It binds oxygen using iron in the ferrous state (Fe²⁺)</div><div class="opt-text-ar">يرتبط بالأكسجين باستخدام الحديد في الحالة المختزلة (Fe²⁺)</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">It carries only carbon dioxide</div><div class="opt-text-ar">ينقل ثاني أكسيد الكربون فقط</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">It is a lipid molecule</div><div class="opt-text-ar">هو جزيء دهني</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-pink">
+    <span class="q-number">QUESTION 08</span>
+    <div class="q-text-en">White blood cells are produced in the:</div>
+    <div class="q-text-ar">تُنتج خلايا الدم البيضاء في:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Heart</div><div class="opt-text-ar">القلب</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Bone marrow</div><div class="opt-text-ar">نخاع العظم</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Liver</div><div class="opt-text-ar">الكبد</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Kidneys</div><div class="opt-text-ar">الكلى</div></div></div>
+    </div>
+  </div>
+  </div><!-- end blood-mcq sub-panel -->
+
+  <!-- Blood True/False -->
+  <div id="blood-tf" class="sub-panel">
+    <div class="tf-section-title">TRUE / FALSE — صح أم خطأ</div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">01</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Blood is a type of fluid connective tissue.</div>
+        <div class="tf-text-ar">الدم نوع من أنواع النسيج الضام السائل.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">02</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Plasma makes up about 45% of total blood volume.</div>
+        <div class="tf-text-ar">تُشكّل البلازما حوالي 45% من الحجم الكلي للدم.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (55%)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">03</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Platelets play a major role in blood clotting.</div>
+        <div class="tf-text-ar">تؤدي الصفائح الدموية دورًا رئيسيًا في تخثر الدم.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">04</div>
+      <div class="tf-body">
+        <div class="tf-text-en">White blood cells carry oxygen to the tissues.</div>
+        <div class="tf-text-ar">تنقل خلايا الدم البيضاء الأكسجين إلى الأنسجة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (هذه وظيفة خلايا الدم الحمراء)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">05</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Hemoglobin contains iron that binds oxygen molecules.</div>
+        <div class="tf-text-ar">يحتوي الهيموغلوبين على الحديد الذي يرتبط بجزيئات الأكسجين.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-pink">
+      <div class="tf-num">06</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Old red blood cells are destroyed mainly in the spleen and liver.</div>
+        <div class="tf-text-ar">تُدمَّر خلايا الدم الحمراء القديمة بشكل رئيسي في الطحال والكبد.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+  </div><!-- end blood-tf -->
+</div><!-- end blood section -->
+
+<!-- ==================== MUSCLES ==================== -->
+<div id="muscles" class="section">
+  <div class="section-title s-green"><div class="dot"></div> MUSCLES & CARDIOVASCULAR — العضلات والجهاز القلبي الوعائي</div>
+  <div class="quiz-btn-wrap">
+    <button class="quiz-start-btn" style="color:var(--neon-green)" onclick="startQuiz('muscles')">
+      <span>🎲 كويز عشوائي — Random Quiz</span>
+    </button>
+  </div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('muscles','mcq',this)">📝 MCQ — اختيار متعدد</button>
+    <button class="sub-tab" onclick="showSub('muscles','tf',this)">✅ صح / خطأ — True &amp; False</button>
+  </div>
+  <div id="muscles-mcq" class="sub-panel active">
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 01</span>
+    <div class="q-text-en">Which of the following is NOT a type of muscle tissue?</div>
+    <div class="q-text-ar">أيٌّ مما يلي ليس نوعًا من أنواع الأنسجة العضلية؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Skeletal muscle</div><div class="opt-text-ar">العضلة الهيكلية</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Cardiac muscle</div><div class="opt-text-ar">عضلة القلب</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Smooth muscle</div><div class="opt-text-ar">العضلة الملساء</div></div></div>
+      <div class="option correct"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Connective muscle</div><div class="opt-text-ar">العضلة الضامة (غير موجود)</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 02</span>
+    <div class="q-text-en">Skeletal muscle fibers are:</div>
+    <div class="q-text-ar">ألياف العضلة الهيكلية هي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Non-striated and involuntary</div><div class="opt-text-ar">غير مخططة وغير إرادية</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Striated and voluntary</div><div class="opt-text-ar">مخططة وإرادية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Smooth and involuntary</div><div class="opt-text-ar">ملساء وغير إرادية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Striated and single-nucleated</div><div class="opt-text-ar">مخططة وأحادية النواة</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 03</span>
+    <div class="q-text-en">Which of the following occurs during muscle contraction?</div>
+    <div class="q-text-ar">أيٌّ مما يلي يحدث أثناء انقباض العضلة؟</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Sliding of actin over myosin</div><div class="opt-text-ar">انزلاق الأكتين فوق الميوسين</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Sodium ions enter the sarcoplasmic reticulum</div><div class="opt-text-ar">دخول أيونات الصوديوم إلى الشبكة الساركوبلازمية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">ATP is stored in the nucleus</div><div class="opt-text-ar">يُخزّن ATP في النواة</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Muscle length increases</div><div class="opt-text-ar">يزداد طول العضلة</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 04</span>
+    <div class="q-text-en">Isometric contraction is characterized by:</div>
+    <div class="q-text-ar">الانقباض المتساوي الطول (Isometric) يتميز بـ:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Constant tension with changing length</div><div class="opt-text-ar">توتر ثابت مع تغير الطول</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Constant length with changing tension</div><div class="opt-text-ar">طول ثابت مع تغير التوتر</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Constant temperature</div><div class="opt-text-ar">درجة حرارة ثابتة</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Constant energy output</div><div class="opt-text-ar">إخراج طاقة ثابت</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 05</span>
+    <div class="q-text-en">Muscle fatigue is caused by:</div>
+    <div class="q-text-ar">إجهاد العضلات يُسبَّب بـ:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Increase in oxygen supply</div><div class="opt-text-ar">زيادة إمداد الأكسجين</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Accumulation of lactic acid and depletion of ATP</div><div class="opt-text-ar">تراكم حمض اللاكتيك ونضوب ATP</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Increase in blood calcium</div><div class="opt-text-ar">زيادة كالسيوم الدم</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Excess glucose in muscle</div><div class="opt-text-ar">زيادة الجلوكوز في العضلة</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 06</span>
+    <div class="q-text-en">The main function of the cardiovascular system is to:</div>
+    <div class="q-text-ar">الوظيفة الرئيسية للجهاز القلبي الوعائي هي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Produce hormones</div><div class="opt-text-ar">إنتاج الهرمونات</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Supply cells with oxygen and nutrients and remove waste</div><div class="opt-text-ar">إمداد الخلايا بالأكسجين والمغذيات وإزالة الفضلات</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Control movement and posture</div><div class="opt-text-ar">التحكم في الحركة والوضعية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Maintain body temperature only</div><div class="opt-text-ar">الحفاظ على درجة حرارة الجسم فقط</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 07</span>
+    <div class="q-text-en">In pulmonary circulation, blood is:</div>
+    <div class="q-text-ar">في الدورة الدموية الرئوية، الدم:</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Oxygenated in the lungs</div><div class="opt-text-ar">يتأكسج في الرئتين</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Oxygenated in the liver</div><div class="opt-text-ar">يتأكسج في الكبد</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Deoxygenated in the heart</div><div class="opt-text-ar">يفقد أكسجينه في القلب</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Sent to the kidneys</div><div class="opt-text-ar">يُرسل إلى الكلى</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 08</span>
+    <div class="q-text-en">Cardiac output (CO) is calculated as:</div>
+    <div class="q-text-ar">الناتج القلبي (CO) يُحسب بالمعادلة:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">CO = HR ÷ SV</div><div class="opt-text-ar">CO = معدل القلب ÷ حجم الضربة</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">CO = HR × SV</div><div class="opt-text-ar">CO = معدل القلب × حجم الضربة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">CO = SV − HR</div><div class="opt-text-ar">CO = حجم الضربة − معدل القلب</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">CO = HR + SV</div><div class="opt-text-ar">CO = معدل القلب + حجم الضربة</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 09</span>
+    <div class="q-text-en">Normal systolic and diastolic blood pressures are approximately:</div>
+    <div class="q-text-ar">ضغط الدم الانقباضي والانبساطي الطبيعي تقريبًا:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">70 mmHg and 120 mmHg</div><div class="opt-text-ar">70 و 120 ملم زئبق</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">120 mmHg and 70 mmHg</div><div class="opt-text-ar">120 و 70 ملم زئبق</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">140 mmHg and 90 mmHg</div><div class="opt-text-ar">140 و 90 ملم زئبق</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">100 mmHg and 50 mmHg</div><div class="opt-text-ar">100 و 50 ملم زئبق</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-green">
+    <span class="q-number">QUESTION 10</span>
+    <div class="q-text-en">The rapid regulation of arterial blood pressure is controlled by:</div>
+    <div class="q-text-ar">التنظيم السريع لضغط الدم الشرياني يتحكم فيه:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">The kidneys</div><div class="opt-text-ar">الكلى</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">The nervous mechanism</div><div class="opt-text-ar">الآلية العصبية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">The capillary fluid shift mechanism</div><div class="opt-text-ar">آلية تحوّل السوائل الشعرية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Hormonal mechanism</div><div class="opt-text-ar">الآلية الهرمونية</div></div></div>
+    </div>
+  </div>
+  </div><!-- end muscles-mcq sub-panel -->
+
+  <!-- Muscles True/False -->
+  <div id="muscles-tf" class="sub-panel">
+    <div class="tf-section-title">TRUE / FALSE — صح أم خطأ</div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">01</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Skeletal muscle contraction is voluntary.</div>
+        <div class="tf-text-ar">انقباض العضلة الهيكلية إرادي.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">02</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Smooth muscle is striated and found in the heart.</div>
+        <div class="tf-text-ar">العضلة الملساء مخططة وتوجد في القلب.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (عضلة القلب هي المخططة)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">03</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Calcium ions play a key role in initiating muscle contraction.</div>
+        <div class="tf-text-ar">تؤدي أيونات الكالسيوم دورًا محوريًا في بدء انقباض العضلة.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">04</div>
+      <div class="tf-body">
+        <div class="tf-text-en">In isotonic contraction, the muscle length remains constant.</div>
+        <div class="tf-text-ar">في الانقباض المتساوي التوتر، يظل طول العضلة ثابتًا.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (الطول يتغير، أما التوتر فيبقى ثابتًا)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">05</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The cardiovascular system is an open circuit system.</div>
+        <div class="tf-text-ar">الجهاز القلبي الوعائي نظام دورة مفتوحة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (إنه نظام دورة مغلقة)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">06</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The right ventricle pumps blood to the lungs through the pulmonary arteries.</div>
+        <div class="tf-text-ar">يضخ البطين الأيمن الدم إلى الرئتين عبر الشرايين الرئوية.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">07</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The left ventricle pumps deoxygenated blood to the lungs.</div>
+        <div class="tf-text-ar">يضخ البطين الأيسر دمًا غير مؤكسج إلى الرئتين.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (البطين الأيسر يضخ الدم المؤكسج للجسم)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">08</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Cardiac output increases when heart rate and stroke volume increase.</div>
+        <div class="tf-text-ar">يزداد الناتج القلبي عندما يزداد معدل ضربات القلب وحجم الضربة.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">09</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Arteries carry blood toward the heart.</div>
+        <div class="tf-text-ar">تحمل الشرايين الدم باتجاه القلب.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (الشرايين تحمل الدم بعيدًا عن القلب)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-green">
+      <div class="tf-num">10</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Increased sympathetic stimulation raises blood pressure.</div>
+        <div class="tf-text-ar">يؤدي زيادة التحفيز الودي إلى ارتفاع ضغط الدم.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+  </div><!-- end muscles-tf -->
+</div><!-- end muscles section -->
+
+<!-- ==================== RESPIRATORY ==================== -->
+<div id="respiratory" class="section">
+  <div class="section-title s-yellow"><div class="dot"></div> RESPIRATORY SYSTEM — الجهاز التنفسي</div>
+  <div class="quiz-btn-wrap">
+    <button class="quiz-start-btn" style="color:var(--neon-yellow)" onclick="startQuiz('respiratory')">
+      <span>🎲 كويز عشوائي — Random Quiz</span>
+    </button>
+  </div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('respiratory','mcq',this)">📝 MCQ — اختيار متعدد</button>
+    <button class="sub-tab" onclick="showSub('respiratory','tf',this)">✅ صح / خطأ — True &amp; False</button>
+  </div>
+  <div id="respiratory-mcq" class="sub-panel active">
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 01</span>
+    <div class="q-text-en">Which of the following is NOT a part of the respiratory passage?</div>
+    <div class="q-text-ar">أيٌّ مما يلي ليس جزءًا من مجرى الجهاز التنفسي؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Trachea</div><div class="opt-text-ar">القصبة الهوائية</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Pharynx</div><div class="opt-text-ar">البلعوم</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Esophagus</div><div class="opt-text-ar">المريء</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Larynx</div><div class="opt-text-ar">الحنجرة</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 02</span>
+    <div class="q-text-en">The primary function of respiration is to:</div>
+    <div class="q-text-ar">الوظيفة الرئيسية للتنفس هي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Regulate body temperature</div><div class="opt-text-ar">تنظيم حرارة الجسم</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Supply oxygen and remove carbon dioxide</div><div class="opt-text-ar">إمداد الجسم بالأكسجين وإزالة ثاني أكسيد الكربون</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Produce hormones</div><div class="opt-text-ar">إنتاج الهرمونات</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Aid digestion</div><div class="opt-text-ar">المساعدة في الهضم</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 03</span>
+    <div class="q-text-en">Which of the following is a non-respiratory function of the lungs?</div>
+    <div class="q-text-ar">أيٌّ مما يلي وظيفة غير تنفسية للرئتين؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Gas exchange</div><div class="opt-text-ar">تبادل الغازات</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Regulation of acid-base balance</div><div class="opt-text-ar">تنظيم التوازن الحمضي القاعدي</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Oxygen transport by hemoglobin</div><div class="opt-text-ar">نقل الأكسجين بواسطة الهيموغلوبين</div></div></div>
+      <div class="option correct"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Air filtration</div><div class="opt-text-ar">تصفية الهواء</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 04</span>
+    <div class="q-text-en">During inspiration, which of the following occurs?</div>
+    <div class="q-text-ar">أثناء الشهيق، أيٌّ مما يلي يحدث؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Diaphragm relaxes and moves upward</div><div class="opt-text-ar">الحجاب الحاجز يسترخي ويتحرك للأعلى</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Thoracic cavity volume decreases</div><div class="opt-text-ar">يتناقص حجم التجويف الصدري</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">External intercostal muscles contract</div><div class="opt-text-ar">تنقبض العضلات الوربية الخارجية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Air pressure inside the lungs increases</div><div class="opt-text-ar">يزداد ضغط الهواء داخل الرئتين</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 05</span>
+    <div class="q-text-en">Expiration is mainly a:</div>
+    <div class="q-text-ar">الزفير بشكل رئيسي هو عملية:</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Passive process</div><div class="opt-text-ar">سلبية (لا تحتاج طاقة)</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Voluntary process</div><div class="opt-text-ar">إرادية</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Active process</div><div class="opt-text-ar">نشطة (تحتاج طاقة)</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Reflex process</div><div class="opt-text-ar">انعكاسية</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 06</span>
+    <div class="q-text-en">Which statement best describes hypoxia?</div>
+    <div class="q-text-ar">أيٌّ من العبارات التالية يصف نقص الأكسجين (Hypoxia) بشكل أفضل؟</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Lack of oxygen at the tissue level</div><div class="opt-text-ar">نقص الأكسجين على مستوى الأنسجة</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Increase in oxygen level in tissues</div><div class="opt-text-ar">زيادة مستوى الأكسجين في الأنسجة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Lack of carbon dioxide removal</div><div class="opt-text-ar">عدم إزالة ثاني أكسيد الكربون</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Low blood volume</div><div class="opt-text-ar">انخفاض حجم الدم</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 07</span>
+    <div class="q-text-en">Which type of hypoxia occurs due to low oxygen tension in inspired air?</div>
+    <div class="q-text-ar">أي نوع من نقص الأكسجين يحدث بسبب انخفاض ضغط الأكسجين في الهواء المستنشق؟</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Hypoxic hypoxia</div><div class="opt-text-ar">نقص الأكسجين الهوائي</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Stagnant hypoxia</div><div class="opt-text-ar">نقص الأكسجين الركودي</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Anemic hypoxia</div><div class="opt-text-ar">نقص الأكسجين الفقري</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Histotoxic hypoxia</div><div class="opt-text-ar">نقص الأكسجين النسيجي السمّي</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 08</span>
+    <div class="q-text-en">Which type of hypoxia is caused by low cardiac output or vascular obstruction?</div>
+    <div class="q-text-ar">أي نوع من نقص الأكسجين يُسبّبه انخفاض الناتج القلبي أو انسداد الأوعية؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Hypoxic hypoxia</div><div class="opt-text-ar">نقص الأكسجين الهوائي</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Stagnant hypoxia</div><div class="opt-text-ar">نقص الأكسجين الركودي</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Anemic hypoxia</div><div class="opt-text-ar">نقص الأكسجين الفقري</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Histotoxic hypoxia</div><div class="opt-text-ar">نقص الأكسجين النسيجي السمّي</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 09</span>
+    <div class="q-text-en">In anemic hypoxia, cyanosis is:</div>
+    <div class="q-text-ar">في نقص الأكسجين الفقري (Anemic hypoxia)، الزرقة (Cyanosis) تكون:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Always present</div><div class="opt-text-ar">موجودة دائمًا</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Absent</div><div class="opt-text-ar">غائبة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Present only during rest</div><div class="opt-text-ar">موجودة أثناء الراحة فقط</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Present only during exercise</div><div class="opt-text-ar">موجودة أثناء التمرين فقط</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-yellow">
+    <span class="q-number">QUESTION 10</span>
+    <div class="q-text-en">The affinity of hemoglobin for carbon monoxide (CO) compared to oxygen (O₂) is:</div>
+    <div class="q-text-ar">ألفة الهيموغلوبين لأول أكسيد الكربون مقارنةً بالأكسجين تساوي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">10 times greater</div><div class="opt-text-ar">10 أضعاف</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">50 times greater</div><div class="opt-text-ar">50 ضعفًا</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">100 times greater</div><div class="opt-text-ar">100 ضعف</div></div></div>
+      <div class="option correct"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">210 times greater</div><div class="opt-text-ar">210 أضعاف</div></div></div>
+    </div>
+  </div>
+  </div><!-- end respiratory-mcq sub-panel -->
+
+  <!-- Respiratory True/False -->
+  <div id="respiratory-tf" class="sub-panel">
+    <div class="tf-section-title">TRUE / FALSE — صح أم خطأ</div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">01</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The respiratory passages include the nose, pharynx, larynx, trachea, bronchi, and alveoli.</div>
+        <div class="tf-text-ar">تشمل مجاري الجهاز التنفسي: الأنف والبلعوم والحنجرة والقصبة الهوائية والقصبات والحويصلات الهوائية.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">02</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The main function of the respiratory system is digestion.</div>
+        <div class="tf-text-ar">الوظيفة الرئيسية للجهاز التنفسي هي الهضم.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (وظيفته تبادل الغازات)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">03</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Inspiration is an active process that requires muscular contraction.</div>
+        <div class="tf-text-ar">الشهيق عملية نشطة تتطلب انقباض العضلات.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">04</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Expiration occurs when thoracic cavity volume increases.</div>
+        <div class="tf-text-ar">يحدث الزفير عندما يزداد حجم التجويف الصدري.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (الزفير يحدث عندما ينقص الحجم)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">05</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The diaphragm moves downward during inspiration.</div>
+        <div class="tf-text-ar">يتحرك الحجاب الحاجز للأسفل أثناء الشهيق.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">06</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Hypoxia means an excess supply of oxygen at the tissue level.</div>
+        <div class="tf-text-ar">نقص الأكسجين (Hypoxia) يعني زيادة إمداد الأكسجين للأنسجة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (يعني نقص الأكسجين)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">07</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Stagnant hypoxia results from inadequate blood flow through tissues.</div>
+        <div class="tf-text-ar">نقص الأكسجين الركودي ينتج من قصور تدفق الدم خلال الأنسجة.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">08</div>
+      <div class="tf-body">
+        <div class="tf-text-en">In hypoxic hypoxia, cyanosis is absent.</div>
+        <div class="tf-text-ar">في نقص الأكسجين الهوائي، تكون الزرقة غائبة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (الزرقة موجودة في نقص الأكسجين الهوائي)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">09</div>
+      <div class="tf-body">
+        <div class="tf-text-en">In anemic hypoxia, the patient may appear red due to carboxyhemoglobin.</div>
+        <div class="tf-text-ar">في نقص الأكسجين الفقري، قد يبدو المريض أحمر اللون بسبب الكاربوكسي هيموجلوبين.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-yellow">
+      <div class="tf-num">10</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Carbon monoxide binds to hemoglobin more weakly than oxygen.</div>
+        <div class="tf-text-ar">يرتبط أول أكسيد الكربون بالهيموغلوبين بصورة أضعف من الأكسجين.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (يرتبط بقوة أكبر بـ 210 مرة)</span>
+      </div>
+    </div>
+  </div><!-- end respiratory-tf -->
+</div><!-- end respiratory section -->
+
+<!-- ==================== THERMOREGULATION ==================== -->
+<div id="thermo" class="section">
+  <div class="section-title s-orange"><div class="dot"></div> THERMOREGULATION — التنظيم الحراري</div>
+  <div class="quiz-btn-wrap">
+    <button class="quiz-start-btn" style="color:var(--neon-orange)" onclick="startQuiz('thermo')">
+      <span>🎲 كويز عشوائي — Random Quiz</span>
+    </button>
+  </div>
+  <div class="sub-tabs">
+    <button class="sub-tab active" onclick="showSub('thermo','mcq',this)">📝 MCQ — اختيار متعدد</button>
+    <button class="sub-tab" onclick="showSub('thermo','tf',this)">✅ صح / خطأ — True &amp; False</button>
+  </div>
+  <div id="thermo-mcq" class="sub-panel active">
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 01</span>
+    <div class="q-text-en">The thermoregulatory center is located in the:</div>
+    <div class="q-text-ar">مركز تنظيم الحرارة يقع في:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Medulla oblongata</div><div class="opt-text-ar">النخاع المستطيل</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Cerebellum</div><div class="opt-text-ar">المخيخ</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Hypothalamus</div><div class="opt-text-ar">منطقة ما تحت المهاد</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Pituitary gland</div><div class="opt-text-ar">الغدة النخامية</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 02</span>
+    <div class="q-text-en">The average normal core body temperature is:</div>
+    <div class="q-text-ar">متوسط درجة حرارة جوهر الجسم الطبيعية هي:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">35°C</div><div class="opt-text-ar">35 درجة مئوية</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">36°C</div><div class="opt-text-ar">36 درجة مئوية</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">37°C</div><div class="opt-text-ar">37 درجة مئوية</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">38°C</div><div class="opt-text-ar">38 درجة مئوية</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 03</span>
+    <div class="q-text-en">Peripheral thermoreceptors are located in the:</div>
+    <div class="q-text-ar">المستقبلات الحرارية المحيطية تقع في:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Brain</div><div class="opt-text-ar">الدماغ</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Spinal cord</div><div class="opt-text-ar">الحبل الشوكي</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Skin</div><div class="opt-text-ar">الجلد</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Liver</div><div class="opt-text-ar">الكبد</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 04</span>
+    <div class="q-text-en">When body temperature falls below 37°C, which part of the hypothalamus is activated?</div>
+    <div class="q-text-ar">عندما تنخفض درجة حرارة الجسم عن 37°C، أي جزء من تحت المهاد ينشّط؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Anterior hypothalamus</div><div class="opt-text-ar">تحت المهاد الأمامي</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Posterior hypothalamus</div><div class="opt-text-ar">تحت المهاد الخلفي</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Medial hypothalamus</div><div class="opt-text-ar">تحت المهاد الأوسط</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Pituitary hypothalamus</div><div class="opt-text-ar">تحت المهاد النخامي</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 05</span>
+    <div class="q-text-en">During heat exposure, the anterior hypothalamus initiates:</div>
+    <div class="q-text-ar">عند التعرض للحرارة، يبدأ تحت المهاد الأمامي في تفعيل:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Heat gain mechanisms</div><div class="opt-text-ar">آليات اكتساب الحرارة</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Heat loss mechanisms</div><div class="opt-text-ar">آليات فقدان الحرارة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Hormonal inhibition</div><div class="opt-text-ar">تثبيط هرموني</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">None of the above</div><div class="opt-text-ar">لا شيء مما سبق</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 06</span>
+    <div class="q-text-en">Which of the following is a way of heat gain?</div>
+    <div class="q-text-ar">أيٌّ مما يلي طريقة لاكتساب الحرارة؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Radiation</div><div class="opt-text-ar">الإشعاع</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Convection</div><div class="opt-text-ar">الحمل الحراري</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Increased muscle activity (shivering)</div><div class="opt-text-ar">زيادة النشاط العضلي (الرعشة)</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Evaporation</div><div class="opt-text-ar">التبخّر</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 07</span>
+    <div class="q-text-en">Which of the following contributes to heat loss by evaporation?</div>
+    <div class="q-text-ar">أيٌّ مما يلي يُسهم في فقدان الحرارة عن طريق التبخّر؟</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Piloerection</div><div class="opt-text-ar">قيام الشعر</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Shivering</div><div class="opt-text-ar">الرعشة</div></div></div>
+      <div class="option correct"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Sweating</div><div class="opt-text-ar">التعرّق</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Vasoconstriction</div><div class="opt-text-ar">تضيّق الأوعية</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 08</span>
+    <div class="q-text-en">Vasoconstriction of skin blood vessels occurs when:</div>
+    <div class="q-text-ar">تضيّق أوعية دم الجلد يحدث عندما:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">The body is exposed to heat</div><div class="opt-text-ar">يتعرض الجسم للحرارة</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">The body is exposed to cold</div><div class="opt-text-ar">يتعرض الجسم للبرد</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">The body is dehydrated</div><div class="opt-text-ar">يعاني الجسم من الجفاف</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">The body temperature is normal</div><div class="opt-text-ar">تكون درجة حرارة الجسم طبيعية</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 09</span>
+    <div class="q-text-en">Which hormones play a role in increasing heat production?</div>
+    <div class="q-text-ar">أي الهرمونات تؤدي دورًا في زيادة إنتاج الحرارة؟</div>
+    <div class="options">
+      <div class="option correct"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">T3, T4, and adrenaline</div><div class="opt-text-ar">T3 وT4 والأدرينالين</div></div></div>
+      <div class="option"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Insulin and glucagon</div><div class="opt-text-ar">الأنسولين والجلوكاجون</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">ADH and oxytocin</div><div class="opt-text-ar">ADH والأوكسيتوسين</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Estrogen and progesterone</div><div class="opt-text-ar">الإستروجين والبروجسترون</div></div></div>
+    </div>
+  </div>
+
+  <div class="q-card border-orange">
+    <span class="q-number">QUESTION 10</span>
+    <div class="q-text-en">Piloerection helps to:</div>
+    <div class="q-text-ar">قيام الشعر (Piloerection) يُساعد على:</div>
+    <div class="options">
+      <div class="option"><div class="opt-letter">A</div><div class="opt-content"><div class="opt-text-en">Increase heat loss</div><div class="opt-text-ar">زيادة فقدان الحرارة</div></div></div>
+      <div class="option correct"><div class="opt-letter">B</div><div class="opt-content"><div class="opt-text-en">Increase heat gain</div><div class="opt-text-ar">زيادة اكتساب الحرارة</div></div></div>
+      <div class="option"><div class="opt-letter">C</div><div class="opt-content"><div class="opt-text-en">Produce sweat</div><div class="opt-text-ar">إنتاج العرق</div></div></div>
+      <div class="option"><div class="opt-letter">D</div><div class="opt-content"><div class="opt-text-en">Decrease metabolism</div><div class="opt-text-ar">تقليل الأيض</div></div></div>
+    </div>
+  </div>
+  </div><!-- end thermo-mcq sub-panel -->
+
+  <!-- Thermoregulation True/False -->
+  <div id="thermo-tf" class="sub-panel">
+    <div class="tf-section-title">TRUE / FALSE — صح أم خطأ</div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">01</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The hypothalamus controls body temperature through the thermoregulatory center.</div>
+        <div class="tf-text-ar">يتحكم منطقة ما تحت المهاد في درجة حرارة الجسم من خلال مركز التنظيم الحراري.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">02</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Peripheral thermoreceptors are found in the hypothalamus.</div>
+        <div class="tf-text-ar">المستقبلات الحرارية المحيطية توجد في منطقة ما تحت المهاد.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (توجد في الجلد)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">03</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Heat loss occurs through radiation, conduction, convection, and evaporation.</div>
+        <div class="tf-text-ar">يحدث فقدان الحرارة عن طريق الإشعاع والتوصيل والحمل الحراري والتبخّر.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">04</div>
+      <div class="tf-body">
+        <div class="tf-text-en">During exposure to cold, vasodilation occurs in skin blood vessels.</div>
+        <div class="tf-text-ar">عند التعرض للبرد، يحدث توسّع في أوعية دم الجلد.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (يحدث تضيّق وعائي لا توسّع)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">05</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Shivering increases heat production.</div>
+        <div class="tf-text-ar">الرعشة تزيد من إنتاج الحرارة.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">06</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The anterior hypothalamus activates heat gain mechanisms.</div>
+        <div class="tf-text-ar">يُفعّل تحت المهاد الأمامي آليات اكتساب الحرارة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (يُفعّل آليات فقدان الحرارة)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">07</div>
+      <div class="tf-body">
+        <div class="tf-text-en">The average rectal temperature is around 37°C.</div>
+        <div class="tf-text-ar">متوسط درجة حرارة المستقيم حوالي 37 درجة مئوية.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">08</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Piloerection helps conserve heat during cold exposure.</div>
+        <div class="tf-text-ar">يساعد قيام الشعر على الحفاظ على الحرارة أثناء التعرض للبرد.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">09</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Increased secretion of thyroid hormones contributes to heat loss.</div>
+        <div class="tf-text-ar">زيادة إفراز هرمونات الغدة الدرقية يُسهم في فقدان الحرارة.</div>
+        <span class="tf-badge tf-false">✗ FALSE — خطأ (تزيد إنتاج الحرارة لا فقدانها)</span>
+      </div>
+    </div>
+
+    <div class="tf-card border-orange">
+      <div class="tf-num">10</div>
+      <div class="tf-body">
+        <div class="tf-text-en">Wearing light clothes helps increase heat loss during hot weather.</div>
+        <div class="tf-text-ar">ارتداء الملابس الخفيفة يُساعد على زيادة فقدان الحرارة في الطقس الحار.</div>
+        <span class="tf-badge tf-true">✓ TRUE — صح</span>
+      </div>
+    </div>
+  </div><!-- end thermo-tf -->
+</div><!-- end thermo section -->
+
+<!-- Quiz Overlay -->
+<div id="quizOverlay" class="quiz-overlay">
+  <div class="quiz-modal">
+    <div class="quiz-header">
+      <div class="quiz-title" id="quizTitle">RANDOM QUIZ</div>
+      <button class="quiz-close" onclick="closeQuiz()">✕ إغلاق</button>
+    </div>
+
+    <!-- type badge -->
+    <div id="quizTypeBadge" style="margin-bottom:10px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;opacity:0.5;text-align:center;text-transform:uppercase;"></div>
+
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+    <div class="quiz-counter" id="quizCounter"></div>
+
+    <!-- Question display -->
+    <div id="quizQuestionArea"></div>
+
+    <!-- Score screen -->
+    <div class="quiz-score-screen" id="quizScoreScreen">
+      <div class="score-circle" id="scoreCircle">
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="score-denom" id="scoreDenom">/ 10</div>
+      </div>
+      <div id="scoreBreakdown" style="font-family:'Orbitron',monospace;font-size:11px;letter-spacing:1px;opacity:0.5;margin-bottom:20px;"></div>
+      <div class="score-msg" id="scoreMsg"></div>
+      <div class="score-sub" id="scoreSub"></div>
+      <div style="margin-top:30px;">
+        <button class="quiz-retry-btn" id="retryBtn" onclick="retryQuiz()">🔄 كويز جديد عشوائي</button>
+        <button class="quiz-retry-btn" onclick="closeQuiz()" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.4)">✕ إغلاق</button>
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="quiz-nav-btn" id="btnNext" onclick="nextQuestion()">التالي &#8592;</button>
+      <button class="quiz-nav-btn" id="btnFinish" onclick="finishQuiz()">إنهاء الكويز ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showSub(sectionId, panelId, btn) {
+    const section = document.getElementById(sectionId);
+    section.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    section.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById(sectionId + '-' + panelId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ===== RANDOM QUIZ ENGINE =====
+  const SECTION_COLORS = {
+    physiology: '#00f5ff',
+    blood: '#ff00ff',
+    muscles: '#00ff88',
+    respiratory: '#ffff00',
+    thermo: '#ff6600'
+  };
+
+  const SECTION_TITLES = {
+    physiology: 'الفسيولوجيا',
+    blood: 'الدم',
+    muscles: 'العضلات',
+    respiratory: 'الجهاز التنفسي',
+    thermo: 'التنظيم الحراري'
+  };
+
+  /*
+   * KEYWORD MAP
+   * Key = substring of question EN text (case-insensitive match)
+   * Value = array of words/phrases to highlight in EN and AR question text
+   * Format: { en: [...], ar: [...] }
+   */
+  const KEYWORD_MAP = [
+    // ── PHYSIOLOGY ──────────────────────────────────────────────────────────
+    { q: 'Physiology is mainly concerned',       en: ['Physiology', 'function'],               ar: ['الفسيولوجيا', 'وظائف'] },
+    { q: 'Human physiology focuses',             en: ['integration'],                           ar: ['تكاملها'] },
+    { q: 'how many cells make up',               en: ['75–100 trillion'],                       ar: ['75–100 تريليون'] },
+    { q: 'similar cells with similar properties',en: ['Tissues'],                               ar: ['أنسجة'] },
+    { q: 'Homeostasis refers',                   en: ['Homeostasis', 'constant internal'],      ar: ['التوازن الداخلي', 'ثبات'] },
+    { q: 'metabolic functions through hormones', en: ['Endocrine', 'hormones'],                 ar: ['الغدد الصماء', 'الهرمونات'] },
+    { q: 'increases the rate of most chemical',  en: ['Thyroid hormone'],                       ar: ['الغدة الدرقية'] },
+    { q: 'autonomic nervous system controls',    en: ['autonomic', 'subconscious'],             ar: ['اللاإرادي', 'اللاواعي'] },
+    { q: 'components of protoplasm',             en: ['electrolytes', 'proteins'],              ar: ['الإلكتروليتات', 'البروتينات'] },
+    { q: '95% of cellular energy',               en: ['Mitochondrion'],                         ar: ['الميتوكوندريا'] },
+    // TF physiology
+    { q: 'body systems work together',           en: ['systems', 'work together'],              ar: ['أجهزة', 'معًا'] },
+    { q: 'deals only with the study of human anatomy', en: ['anatomy'],                         ar: ['تشريح'] },
+    { q: 'Tissues are formed by',                en: ['Tissues', 'similar cells'],              ar: ['الأنسجة', 'خلايا متشابهة'] },
+    { q: 'Homeostasis keeps internal',           en: ['Homeostasis', 'constant'],               ar: ['التوازن الداخلي', 'ثابتة'] },
+    { q: 'kidneys help maintain constant ion',   en: ['kidneys', 'ion concentration'],          ar: ['الكلى', 'تركيز'] },
+    { q: 'Hormones are secreted directly into the digestive', en: ['digestive tract'],          ar: ['الهضمي'] },
+    { q: 'nervous system operates only at a conscious', en: ['conscious level'],               ar: ['الواعي'] },
+    { q: 'autonomic nervous system controls heart', en: ['heart activity', 'gland secretion'], ar: ['القلب', 'الغدد'] },
+    { q: 'cytoplasm is separated',               en: ['cell membrane'],                         ar: ['غشاء الخلية'] },
+    { q: 'Without mitochondria',                 en: ['mitochondria', 'energy'],                ar: ['الميتوكوندريا', 'طاقة'] },
+
+    // ── BLOOD ────────────────────────────────────────────────────────────────
+    { q: 'NOT a component of blood',             en: ['Cartilage'],                             ar: ['الغضروف'] },
+    { q: 'percentage of blood is plasma',        en: ['55%', 'plasma'],                         ar: ['55%', 'البلازما'] },
+    { q: 'protein is responsible for blood clotting', en: ['Fibrinogen', 'clotting'],          ar: ['الفيبرينوجين', 'تخثر'] },
+    { q: 'absence of which protein in serum',    en: ['serum', 'Fibrinogen'],                   ar: ['المصل', 'الفيبرينوجين'] },
+    { q: 'Red blood cells are mainly responsible', en: ['oxygen', 'carbon dioxide'],            ar: ['الأكسجين', 'ثاني أكسيد الكربون'] },
+    { q: 'lifespan of a red blood cell',         en: ['120 days'],                              ar: ['120 يومًا'] },
+    { q: 'hemoglobin is correct',                en: ['ferrous', 'Fe²⁺'],                       ar: ['المختزلة', 'Fe²⁺'] },
+    { q: 'White blood cells are produced',       en: ['Bone marrow'],                           ar: ['نخاع العظم'] },
+    // TF blood
+    { q: 'fluid connective tissue',              en: ['connective tissue'],                     ar: ['النسيج الضام'] },
+    { q: 'Plasma makes up about 45%',            en: ['45%'],                                   ar: ['45%'] },
+    { q: 'White blood cells carry oxygen',       en: ['White blood cells', 'oxygen'],           ar: ['البيضاء', 'الأكسجين'] },
+    { q: 'Hemoglobin contains iron',             en: ['iron', 'oxygen'],                        ar: ['الحديد', 'الأكسجين'] },
+    { q: 'Old red blood cells are destroyed',    en: ['spleen', 'liver'],                       ar: ['الطحال', 'الكبد'] },
+
+    // ── MUSCLES / CARDIOVASCULAR ─────────────────────────────────────────────
+    { q: 'NOT a type of muscle tissue',          en: ['Connective muscle'],                     ar: ['الضامة'] },
+    { q: 'Skeletal muscle fibers are',           en: ['Striated', 'voluntary'],                 ar: ['مخططة', 'إرادية'] },
+    { q: 'occurs during muscle contraction',     en: ['actin', 'myosin'],                       ar: ['الأكتين', 'الميوسين'] },
+    { q: 'Isometric contraction',                en: ['Isometric', 'Constant length'],          ar: ['المتساوي الطول', 'طول ثابت'] },
+    { q: 'Muscle fatigue is caused',             en: ['lactic acid', 'ATP'],                    ar: ['اللاكتيك', 'ATP'] },
+    { q: 'function of the cardiovascular system', en: ['oxygen', 'nutrients', 'waste'],         ar: ['الأكسجين', 'المغذيات', 'الفضلات'] },
+    { q: 'pulmonary circulation, blood is',      en: ['Oxygenated', 'lungs'],                   ar: ['يتأكسج', 'الرئتين'] },
+    { q: 'Cardiac output',                       en: ['CO = HR × SV'],                          ar: ['معدل القلب × حجم الضربة'] },
+    { q: 'Normal systolic and diastolic',        en: ['120 mmHg', '70 mmHg'],                   ar: ['120', '70'] },
+    { q: 'rapid regulation of arterial blood pressure', en: ['nervous mechanism'],              ar: ['العصبية'] },
+    // TF muscles
+    { q: 'Skeletal muscle contraction is voluntary', en: ['voluntary'],                         ar: ['إرادي'] },
+    { q: 'Smooth muscle is striated',            en: ['Smooth muscle', 'striated'],             ar: ['الملساء', 'مخططة'] },
+    { q: 'Calcium ions play a key role',         en: ['Calcium ions'],                          ar: ['الكالسيوم'] },
+    { q: 'isotonic contraction, the muscle length', en: ['isotonic', 'length'],                 ar: ['المتساوي التوتر', 'الطول'] },
+    { q: 'cardiovascular system is an open circuit', en: ['open circuit'],                      ar: ['مفتوحة'] },
+    { q: 'right ventricle pumps blood to the lungs', en: ['right ventricle', 'pulmonary arteries'], ar: ['البطين الأيمن', 'الرئوية'] },
+    { q: 'left ventricle pumps deoxygenated',    en: ['left ventricle', 'deoxygenated'],        ar: ['الأيسر', 'غير مؤكسج'] },
+    { q: 'Cardiac output increases when heart rate', en: ['heart rate', 'stroke volume'],       ar: ['ضربات القلب', 'حجم الضربة'] },
+    { q: 'Arteries carry blood toward the heart', en: ['Arteries'],                             ar: ['الشرايين'] },
+
+    // ── RESPIRATORY ──────────────────────────────────────────────────────────
+    { q: 'process of breathing',                 en: ['breathing', 'ventilation'],              ar: ['التنفس', 'التهوية'] },
+    { q: 'PRIMARY function of breathing',        en: ['gas exchange'],                          ar: ['تبادل الغازات'] },
+    { q: 'inspiration is caused by',             en: ['diaphragm', 'contraction'],              ar: ['الحجاب الحاجز', 'الانقباض'] },
+    { q: 'total lung capacity',                  en: ['tidal', 'residual'],                     ar: ['المدّي', 'المتبقي'] },
+    { q: 'tidal volume',                         en: ['500 mL', 'tidal volume'],                ar: ['500', 'المدي'] },
+    { q: 'transport of CO2 in blood',            en: ['bicarbonate'],                           ar: ['بيكربونات'] },
+    { q: 'hypoxia occurs due to low oxygen tension', en: ['Hypoxic hypoxia'],                   ar: ['الهوائي'] },
+    { q: 'hypoxia is caused by low cardiac output', en: ['Stagnant hypoxia'],                   ar: ['الركودي'] },
+    { q: 'anemic hypoxia, cyanosis',             en: ['Absent', 'cyanosis'],                    ar: ['غائبة', 'الزرقة'] },
+    { q: 'affinity of hemoglobin for carbon monoxide', en: ['210 times', 'carbon monoxide'],   ar: ['210 أضعاف', 'أكسيد الكربون'] },
+    // TF respiratory
+    { q: 'passages include the nose',            en: ['alveoli'],                               ar: ['الحويصلات'] },
+    { q: 'function of the respiratory system is digestion', en: ['digestion'],                  ar: ['الهضم'] },
+    { q: 'Inspiration is an active process',     en: ['active', 'muscular contraction'],        ar: ['نشطة', 'انقباض'] },
+    { q: 'Expiration occurs when thoracic cavity', en: ['thoracic cavity', 'increases'],        ar: ['الصدري', 'يزداد'] },
+    { q: 'diaphragm moves downward during inspiration', en: ['diaphragm', 'downward'],          ar: ['الحجاب الحاجز', 'الأسفل'] },
+    { q: 'Hypoxia means an excess supply',       en: ['excess', 'Hypoxia'],                     ar: ['زيادة', 'نقص الأكسجين'] },
+    { q: 'Stagnant hypoxia results from inadequate blood flow', en: ['blood flow'],             ar: ['تدفق الدم'] },
+    { q: 'hypoxic hypoxia, cyanosis is absent',  en: ['cyanosis', 'absent'],                    ar: ['الزرقة', 'غائبة'] },
+
+    // ── THERMOREGULATION ─────────────────────────────────────────────────────
+    { q: 'normal body temperature',              en: ['37°C', 'core temperature'],              ar: ['37', 'الجوهرية'] },
+    { q: 'thermoregulatory center is located',   en: ['hypothalamus'],                          ar: ['المهاد'] },
+    { q: 'peripheral thermoreceptors',           en: ['skin', 'peripheral'],                    ar: ['الجلد', 'المحيطية'] },
+    { q: 'NOT a method of heat loss',            en: ['Metabolic rate'],                        ar: ['الأيضي'] },
+    { q: 'thermoreceptors in the hypothalamus',  en: ['central', 'hypothalamus'],               ar: ['المركزية', 'المهاد'] },
+    { q: 'way of heat gain',                     en: ['shivering', 'muscle activity'],          ar: ['الرعشة', 'العضلي'] },
+    { q: 'heat loss by evaporation',             en: ['Sweating'],                              ar: ['التعرّق'] },
+    { q: 'Vasoconstriction of skin blood vessels', en: ['Vasoconstriction', 'cold'],            ar: ['تضيّق', 'البرد'] },
+    { q: 'hormones play a role in increasing heat production', en: ['T3', 'T4', 'adrenaline'],  ar: ['T3', 'T4', 'الأدرينالين'] },
+    { q: 'Piloerection helps to',                en: ['Piloerection', 'heat gain'],             ar: ['قيام الشعر', 'اكتساب'] },
+    // TF thermo
+    { q: 'hypothalamus controls body temperature', en: ['hypothalamus', 'thermoregulatory'],   ar: ['المهاد', 'التنظيم الحراري'] },
+    { q: 'Peripheral thermoreceptors are found in the hypothalamus', en: ['Peripheral', 'skin'], ar: ['المحيطية', 'الجلد'] },
+    { q: 'radiation, conduction, convection, and evaporation', en: ['radiation', 'evaporation'], ar: ['الإشعاع', 'التبخّر'] },
+    { q: 'exposure to cold, vasodilation',       en: ['vasodilation', 'cold'],                  ar: ['توسّع', 'البرد'] },
+    { q: 'Shivering increases heat production',  en: ['Shivering'],                             ar: ['الرعشة'] },
+    { q: 'anterior hypothalamus activates heat gain', en: ['anterior', 'heat loss'],            ar: ['الأمامي', 'فقدان'] },
+    { q: 'average rectal temperature',           en: ['rectal', '37°C'],                        ar: ['المستقيم', '37'] },
+    { q: 'Piloerection helps conserve heat',     en: ['Piloerection', 'conserve'],              ar: ['قيام الشعر', 'الحفاظ'] },
+    { q: 'thyroid hormones contributes to heat loss', en: ['thyroid', 'heat loss'],             ar: ['الدرقية', 'فقدان'] },
+    { q: 'light clothes helps increase heat loss', en: ['light clothes', 'heat loss'],          ar: ['الخفيفة', 'فقدان'] },
+  ];
+
+  function highlightKeywords(text, keywords) {
+    if (!keywords || keywords.length === 0) return text;
+    // Sort by length desc so longer phrases match first
+    const sorted = [...keywords].sort((a, b) => b.length - a.length);
+    let result = text;
+    sorted.forEach(kw => {
+      if (!kw) return;
+      // Escape regex special chars
+      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`(${escaped})`, 'gi');
+      result = result.replace(regex, '<em class="kw">$1</em>');
+    });
+    return result;
+  }
+
+  function getKeywords(questionText) {
+    if (!questionText) return { en: [], ar: [] };
+    const lower = questionText.toLowerCase();
+    for (const entry of KEYWORD_MAP) {
+      if (lower.includes(entry.q.toLowerCase())) {
+        return { en: entry.en || [], ar: entry.ar || [] };
+      }
+    }
+    return { en: [], ar: [] };
+  }
+
+  let quizState = {};
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `${r},${g},${b}`;
+  }
+
+  /* Extract MCQ questions */
+  function extractMCQ(sectionId) {
+    const panel = document.getElementById(sectionId + '-mcq');
+    if (!panel) return [];
+    const questions = [];
+    panel.querySelectorAll('.q-card').forEach(card => {
+      const en = card.querySelector('.q-text-en')?.textContent?.trim() || '';
+      const ar = card.querySelector('.q-text-ar')?.textContent?.trim() || '';
+      const opts = [];
+      let correctIdx = -1;
+      card.querySelectorAll('.option').forEach((opt, i) => {
+        const letter = opt.querySelector('.opt-letter')?.textContent?.trim() || String.fromCharCode(65+i);
+        const optEn = opt.querySelector('.opt-text-en')?.textContent?.trim() || '';
+        const optAr = opt.querySelector('.opt-text-ar')?.textContent?.trim() || '';
+        if (opt.classList.contains('correct')) correctIdx = i;
+        opts.push({ letter, en: optEn, ar: optAr });
+      });
+      if (en && opts.length > 0 && correctIdx >= 0)
+        questions.push({ type: 'mcq', en, ar, opts, correctIdx });
+    });
+    return questions;
+  }
+
+  /* Extract True/False questions */
+  function extractTF(sectionId) {
+    const panel = document.getElementById(sectionId + '-tf');
+    if (!panel) return [];
+    const questions = [];
+    panel.querySelectorAll('.tf-card').forEach(card => {
+      const en = card.querySelector('.tf-text-en')?.textContent?.trim() || '';
+      const ar = card.querySelector('.tf-text-ar')?.textContent?.trim() || '';
+      const badge = card.querySelector('.tf-badge');
+      if (!badge) return;
+      const isTrue = badge.classList.contains('tf-true');
+      const explanation = badge.textContent.trim();
+      if (en) questions.push({ type: 'tf', en, ar, isTrue, explanation });
+    });
+    return questions;
+  }
+
+  function startQuiz(sectionId) {
+    const mcqAll = extractMCQ(sectionId);
+    const tfAll  = extractTF(sectionId);
+
+    if (mcqAll.length === 0 && tfAll.length === 0) {
+      alert('لا توجد أسئلة في هذا القسم'); return;
+    }
+
+    const mcqPick = shuffle(mcqAll).slice(0, Math.min(6, mcqAll.length));
+    const tfPick  = shuffle(tfAll).slice(0, Math.min(4, tfAll.length));
+    const combined = shuffle([...mcqPick, ...tfPick]);
+
+    const color = SECTION_COLORS[sectionId] || '#00f5ff';
+
+    quizState = {
+      sectionId,
+      questions: combined,
+      current: 0,
+      score: 0,
+      color,
+      answers: new Array(combined.length).fill(null),
+      mcqCount: mcqPick.length,
+      tfCount:  tfPick.length
+    };
+
+    document.getElementById('quizTitle').textContent = 'RANDOM QUIZ — ' + (SECTION_TITLES[sectionId] || sectionId);
+    document.getElementById('quizTitle').style.color = color;
+    document.getElementById('quizProgressFill').style.background = color;
+    document.getElementById('retryBtn').style.borderColor = color;
+    document.getElementById('retryBtn').style.color = color;
+    document.getElementById('quizTypeBadge').style.color = color;
+    document.getElementById('quizTypeBadge').textContent =
+      `${combined.length} أسئلة — ${mcqPick.length} MCQ + ${tfPick.length} صح/خطأ`;
+
+    document.getElementById('quizScoreScreen').classList.remove('visible');
+    document.getElementById('quizQuestionArea').style.display = 'block';
+    document.querySelector('.quiz-nav').style.display = 'flex';
+
+    document.getElementById('quizOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q     = quizState.questions[quizState.current];
+    const total = quizState.questions.length;
+    const idx   = quizState.current;
+    const color = quizState.color;
+    const prev  = quizState.answers[idx];
+    const answered = prev !== null;
+
+    document.getElementById('quizProgressFill').style.width = ((idx + 1) / total * 100) + '%';
+
+    const typeLabel = q.type === 'tf' ? '✅ صح / خطأ' : '📝 MCQ';
+    document.getElementById('quizCounter').innerHTML =
+      `<span style="opacity:.4">${typeLabel}</span>&nbsp;&nbsp;سؤال ${idx+1} / ${total}`;
+
+    // Get keywords for this question
+    const kw = getKeywords(q.en);
+    const enHighlighted = highlightKeywords(q.en, kw.en);
+    const arHighlighted = highlightKeywords(q.ar, kw.ar);
+
+    let bodyHtml = '';
+
+    if (q.type === 'mcq') {
+      let optsHtml = '';
+      q.opts.forEach((opt, i) => {
+        let cls = 'quiz-option';
+        if (answered) {
+          cls += ' answered';
+          if (i === q.correctIdx) cls += ' show-correct';
+          if (i === prev && prev !== q.correctIdx) cls += ' selected-wrong';
+          if (i === prev && prev === q.correctIdx) cls += ' selected-correct show-correct';
+        }
+        optsHtml += `
+          <div class="${cls}" onclick="selectAnswer(${i})">
+            <div class="quiz-opt-letter">${opt.letter}</div>
+            <div class="opt-content">
+              <div class="quiz-opt-en">${opt.en}</div>
+              <div class="quiz-opt-ar">${opt.ar}</div>
+            </div>
+          </div>`;
+      });
+
+      let feedbackHtml = '';
+      if (answered) {
+        if (prev === q.correctIdx)
+          feedbackHtml = `<div class="quiz-feedback correct-fb">✓ إجابة صحيحة! — Correct!</div>`;
+        else
+          feedbackHtml = `<div class="quiz-feedback wrong-fb">✗ خطأ — الإجابة الصحيحة: ${q.opts[q.correctIdx].en}</div>`;
+      }
+
+      bodyHtml = `
+        <div class="quiz-q-card" style="border-color:rgba(${hexToRgb(color)},0.3)">
+          <div class="quiz-q-en">${enHighlighted}</div>
+          <div class="quiz-q-ar">${arHighlighted}</div>
+          <div class="quiz-options">${optsHtml}</div>
+          ${feedbackHtml}
+        </div>`;
+
+    } else {
+      /* True / False card */
+      let trueBtn  = `quiz-tf-btn quiz-tf-true`;
+      let falseBtn = `quiz-tf-btn quiz-tf-false`;
+      let feedbackHtml = '';
+
+      if (answered) {
+        const userTrue = (prev === 1);
+        const correct  = q.isTrue;
+        const userRight = (userTrue === correct);
+
+        if (userTrue)  trueBtn  += userRight ? ' tf-selected-correct' : ' tf-selected-wrong';
+        else           falseBtn += userRight ? ' tf-selected-correct' : ' tf-selected-wrong';
+
+        if (!userRight) {
+          if (correct) trueBtn  += ' tf-show-correct';
+          else         falseBtn += ' tf-show-correct';
+        }
+
+        feedbackHtml = userRight
+          ? `<div class="quiz-feedback correct-fb">✓ إجابة صحيحة! — Correct!</div>`
+          : `<div class="quiz-feedback wrong-fb">✗ خطأ — الإجابة الصحيحة: ${q.isTrue ? 'TRUE — صح' : 'FALSE — خطأ'}<br><span style="font-size:12px;opacity:0.8">${q.explanation}</span></div>`;
+      }
+
+      bodyHtml = `
+        <div class="quiz-q-card" style="border-color:rgba(${hexToRgb(color)},0.3)">
+          <div class="quiz-q-en">${enHighlighted}</div>
+          <div class="quiz-q-ar">${arHighlighted}</div>
+          <div class="quiz-tf-btns" style="margin-top:22px;">
+            <button class="${trueBtn}" onclick="${answered ? '' : 'selectTF(1)'}" ${answered ? 'disabled' : ''}>
+              <span style="font-size:22px">✓</span><br>TRUE<br><span style="font-size:11px;opacity:0.7">صح</span>
+            </button>
+            <button class="${falseBtn}" onclick="${answered ? '' : 'selectTF(0)'}" ${answered ? 'disabled' : ''}>
+              <span style="font-size:22px">✗</span><br>FALSE<br><span style="font-size:11px;opacity:0.7">خطأ</span>
+            </button>
+          </div>
+          ${feedbackHtml}
+        </div>`;
+    }
+
+    document.getElementById('quizQuestionArea').innerHTML = bodyHtml;
+
+    // Nav buttons
+    const btnNext   = document.getElementById('btnNext');
+    const btnFinish = document.getElementById('btnFinish');
+    btnNext.classList.remove('visible');
+    btnFinish.classList.remove('visible');
+
+    if (answered) {
+      if (idx < total - 1) {
+        btnNext.classList.add('visible');
+        btnNext.style.borderColor = color;
+        btnNext.style.color = color;
+      } else {
+        btnFinish.classList.add('visible');
+        btnFinish.style.borderColor = color;
+        btnFinish.style.color = color;
+      }
+    }
+  }
+
+  function selectAnswer(optIdx) {
+    if (quizState.answers[quizState.current] !== null) return;
+    quizState.answers[quizState.current] = optIdx;
+    const q = quizState.questions[quizState.current];
+    if (optIdx === q.correctIdx) quizState.score++;
+    renderQuestion();
+  }
+
+  function selectTF(val) {
+    if (quizState.answers[quizState.current] !== null) return;
+    quizState.answers[quizState.current] = val;
+    const q = quizState.questions[quizState.current];
+    if ((val === 1) === q.isTrue) quizState.score++;
+    renderQuestion();
+  }
+
+  function nextQuestion() {
+    if (quizState.current < quizState.questions.length - 1) {
+      quizState.current++;
+      renderQuestion();
+      document.getElementById('quizOverlay').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function finishQuiz() {
+    const total = quizState.questions.length;
+    const score = quizState.score;
+    const color = quizState.color;
+    const pct   = Math.round(score / total * 100);
+
+    document.getElementById('quizQuestionArea').style.display = 'none';
+    document.querySelector('.quiz-nav').style.display = 'none';
+    document.getElementById('quizCounter').textContent = '';
+    document.getElementById('quizTypeBadge').textContent = '';
+
+    document.getElementById('scoreCircle').style.borderColor = color;
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('scoreNum').style.color = color;
+    document.getElementById('scoreDenom').textContent = '/ ' + total;
+
+    let mcqScore = 0, tfScore = 0;
+    quizState.questions.forEach((q, i) => {
+      const a = quizState.answers[i];
+      if (q.type === 'mcq' && a === q.correctIdx) mcqScore++;
+      if (q.type === 'tf'  && (a === 1) === q.isTrue) tfScore++;
+    });
+    document.getElementById('scoreBreakdown').textContent =
+      `MCQ: ${mcqScore}/${quizState.mcqCount}   |   صح/خطأ: ${tfScore}/${quizState.tfCount}`;
+
+    let msg, sub;
+    if (pct === 100)    { msg = '🏆 ممتاز! — Perfect!';     sub = 'حصلت على درجة كاملة — Full score!'; }
+    else if (pct >= 80) { msg = '🎉 رائع! — Excellent!';    sub = 'أداء قوي جداً — Great performance!'; }
+    else if (pct >= 60) { msg = '👍 جيد — Good';            sub = 'راجع الأسئلة التي أخطأت فيها'; }
+    else                { msg = '📚 تحتاج مراجعة';          sub = 'راجع المادة وحاول مرة أخرى — Study more and try again'; }
+
+    document.getElementById('scoreMsg').textContent = msg;
+    document.getElementById('scoreMsg').style.color = color;
+    document.getElementById('scoreSub').textContent = sub;
+    document.getElementById('quizScoreScreen').classList.add('visible');
+  }
+
+  function retryQuiz() {
+    startQuiz(quizState.sectionId);
+  }
+
+  function closeQuiz() {
+    document.getElementById('quizOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
